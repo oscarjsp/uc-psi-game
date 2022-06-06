@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+    const cards = [
+        {
+            option1: "agente_p_cola_0.jpg",
+            option2: "agente_p_1.jpg"
+        },
+        {
+            option1: "Arenita_sin_parche_0.png",
+            option2: "Arenita_1.jpg"
+        },
+        {
+            option1: "Bob_esponja_0.png",
+            option2: "Bob_esponja_corbata_azul_1.jpg"
+        },
+        {
+            option1: "Calamardo_manos_0.png",
+            option2: "Calamardo_1.jpg"
+        },
+        {
+            option1: "Candace sin cinturon.jpg",
+            option2: "Candace.png"
+        },
+        {
+            option1: "Daisy pulsera morada.jpg",
+            option2: "Daisy.jpg"
+        },
+        {
+            option1: "Don cangrejo sin pestanas.png",
+            option2: "Don cangrejo.jpg"
+        },
+        {
+            option1: "Ferb sin cinturon.jpg",
+            option2: "Ferb.png"
+        },
+        {
+            option1: "Gary sin mancha.jpg",
+            option2: "Gary.jpg"
+        },
+        {
+            option1: "Isabella sin pestañas.png",
+            option2: "Isabella.png"
+        },
+        {
+            option1: "Los padrinos magicos sin corona.jpg",
+            option2: "Los padrinos magicos.png"
+        },
+        {
+            option1: "Patricio estrella sin hombligo.jpg",
+            option2: "Patricio estrella.png"
+        },
+        {
+            option1: "Pepa pig triste.jpg",
+            option2: "Pepa pig.jpg"
+        },
+        {
+            option1: "Phineas...jpg",
+            option2: "Phineas.jpg"
+        },
+        {
+            option1: "Pistas de blue lengua amarilla.jpg",
+            option2: "Pistas de blue.jpg"
+        },
+        {
+            option1: "Planton antenas.jpg",
+            option2: "Planton.jpg"
+        },
+        {
+            option1: "pluto collar rojo.jpg",
+            option2: "pluto.jpg"
+        },
+        {
+            option1: "goofy sin chaleco.jpg",
+            option2: "goofy.jpg"
+        },
+        {
+            option1: "mickey_mouse.jpg",
+            option2: "mickey-mouse sin cola.jpg"
+        },
+        {
+            option1: "mickey-mouse sin cinturon.jpg",
+            option2: "mickey-mouse.jpg"
+        },
+        {
+            option1: "Pato donald lengua verde.jpg",
+            option2: "Pato donald.jpg"
+        }
+    ];
+
+    var cardIndex = 0;
+    var wrongImage = 0;
+    var goodImage = 0;
+    var goodCardIndex = 0;
+
+    function createCards() {
+        // select card
+        cardIndex = Math.floor(Math.random() * cards.length);
+        wrongImage = Math.floor(Math.random() * 2) + 1;
+        goodImage = (wrongImage % 2) === 0 ? 1 : 2;
+        goodCardIndex =  Math.floor(Math.random() * 2) + 1;
+        wrongCardIndex =  (goodCardIndex % 2) === 0 ? 1 : 2;
+
+        console.log(wrongImage, goodImage, goodCardIndex);
+        var cardSelected = cards[cardIndex];
+        $(".img-card-00").attr("src", "img/" + cardSelected["option" + goodImage]);
+        $(".img-card-0" + goodCardIndex).attr("src", "img/" + cardSelected["option" + goodImage]);
+        $(".img-card-0" + wrongCardIndex).attr("src", "img/" + cardSelected["option" + wrongImage]);
+
+        $(".img-card-0" + goodCardIndex).off("click").click(function(){
+            console.log("card index", goodCardIndex);
+            checkCard(goodCardIndex);
+        });
+        $(".img-card-0" + wrongCardIndex).off("click").click(function(){
+            console.log("card index", wrongCardIndex);
+            checkCard(wrongCardIndex);
+        });
+    }
+
+    function checkCard(cardIndexSelected){
+        let mensaje = "Muy bien! Encontraste al imitador! Quieres volver a jugar?";
+        if(goodCardIndex !== cardIndexSelected){
+            Smensaje = "No es la imagen correcta. Sigue intentando! A la próxima seguro lo logras! Quieres volver a jugar?";
+        } 
+        if (confirm(mensaje) == true) {
+                createCards();
+            } else {
+                //location.reload();
+            }
+    }
+
+    $(document).ready(function(){
+      $("#btn-start").click(function(){
+        $("#pn-start").hide();
+
+        createCards();
+        
+        $("#pn-cards").show();
+      });
+
+      $("#btn-reset").click(function(){
+        createCards();
+      });
+    });
+</script>
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.card-container {
+    /* display: flex;
+    flex-direction: row;
+    border: solid 1px red; */
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-dynamic:hover {
+  cursor: grab;
+  box-shadow: 0 4px 10px 0 rgba(5, 50, 230, 0.9);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: #2980b9;
+  color: white;
+  transform: rotateY(180deg);
+}
+</style>
+</head>
+<body>
+
+<h1>¡Encuentra las diferencias!</h1>
+<h3>Instrucciones: <br/>Felipe y María quieren organizar una fiesta para sus personajes de TV favoritos, pero hay ciertos imitadores que se quieren colar a la fiesta. ¡Ayúdalos a identificar la caricatura diferente!</h3>
+<h3>A la izquierda de la pantalla verás una fotografía de cómo debe verse el invitado. De las dos opciones de la derecha selecciona al que sea diferente, ése será el imitador.</h3>
+
+<div class="" id="pn-start">
+    <button type="button" id="btn-start">Comenzar</button> 
+</div>
+
+<div class="" id="pn-cards" style="display: none">
+<div class="card-container row">
+    <div class="col-md-3">
+        <div class="flip-card">
+            <img class="img-card-00" src="img/img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
+        </div>
+    </div>
+    <div class="col-md-2">
+        &nbsp;
+    </div>
+    <div class="col-md-3">
+        <div class="flip-card flip-card-dynamic">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img class="img-card-01" src="img/img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
+              </div>
+              <div class="flip-card-back">
+                <img class="img-card-01" src="img/img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="flip-card flip-card-dynamic">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img class="img-card-02" src="img/img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
+              </div>
+              <div class="flip-card-back">
+                <img class="img-card-02" src="img/img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-1"></div>   
+    
+     <!-- <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="img/img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
+          </div>
+          <div class="flip-card-back">
+            <h1>John Doe</h1> 
+            <p>Architect & Engineer</p> 
+            <p>We love that guy</p>
+          </div>
+        </div>
+      </div> -->
+</div>
+    <div class="card-container row">
+        <button type="button" id="btn-reset">Cambiar cartas</button> 
+    </div>
+</div>
+
+</body>
+</html>
