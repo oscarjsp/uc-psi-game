@@ -125,9 +125,9 @@
     }
 
     function checkCard(cardIndexSelected){
-        let mensaje = "Muy bien! Encontraste al imitador! Quieres volver a jugar?";
+        let mensaje = "No es la imagen correcta. Sigue intentando! A la próxima seguro lo logras! Quieres volver a jugar?";
         if(goodCardIndex !== cardIndexSelected){
-            Smensaje = "No es la imagen correcta. Sigue intentando! A la próxima seguro lo logras! Quieres volver a jugar?";
+          mensaje = "Muy bien! Encontraste al imitador! Quieres volver a jugar?";
         } 
         if (confirm(mensaje) == true) {
                 createCards();
@@ -153,6 +153,36 @@
 <style>
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #212331;
+  color: #FFFFFF;
+}
+h1 {
+  font-size: 2rem;
+  text-align:center;
+}
+h3 {
+  font-size: 1rem;
+}
+
+.yellow-text {
+  color: #EDB309;
+}
+
+.actions{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  background-color: #EDB309;
+  border-color: #EDB309;
+  border-radius: 5px;
+  padding: 5px 15px;
+  color: #212331;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: x-large;
 }
 
 .card-container {
@@ -183,7 +213,7 @@ body {
 }
 .flip-card-dynamic:hover {
   cursor: grab;
-  box-shadow: 0 4px 10px 0 rgba(5, 50, 230, 0.9);
+  box-shadow: 0 4px 10px 0 rgba(227, 238, 17, 0.9);
 }
 
 .flip-card-front, .flip-card-back {
@@ -204,23 +234,34 @@ body {
   color: white;
   transform: rotateY(180deg);
 }
+
 </style>
 </head>
 <body>
 
-<h1>¡Encuentra las diferencias!</h1>
+<h1>Universidad Católica de Colombia - Psicología</h1>
+<h1 class="yellow-text">¡Encuentra las diferencias!</h1>
 <h3>Instrucciones: <br/>Felipe y María quieren organizar una fiesta para sus personajes de TV favoritos, pero hay ciertos imitadores que se quieren colar a la fiesta. ¡Ayúdalos a identificar la caricatura diferente!</h3>
 <h3>A la izquierda de la pantalla verás una fotografía de cómo debe verse el invitado. De las dos opciones de la derecha selecciona al que sea diferente, ése será el imitador.</h3>
 
-<div class="" id="pn-start">
+<div class="actions" id="pn-start">
     <button type="button" id="btn-start">Comenzar</button> 
 </div>
 
 <div class="" id="pn-cards" style="display: none">
-<div class="card-container row">
+  <hr style="height:2px;border-width:0;color:gray;background-color:gray"></hr>
+  <div class="card-container row">
+    <div class="col-md-3">
+      <h3 style="color: green; text-align:center;">Invitado</h3>
+    </div>
+    <div class="col-md-9">
+      <h3 class="yellow-text" style="text-align:center;">¿Quien es el imitador?</h3>
+    </div>
+  </div>
+  <div class="card-container row">
     <div class="col-md-3">
         <div class="flip-card">
-            <img class="img-card-00" src="img/img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
+            <img class="img-card-00" src="img/img_avatar.png" alt="Avatar" style="width:250px;height:250px;">
         </div>
     </div>
     <div class="col-md-2">
@@ -230,10 +271,10 @@ body {
         <div class="flip-card flip-card-dynamic">
             <div class="flip-card-inner">
               <div class="flip-card-front">
-                <img class="img-card-01" src="img/img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
+                <img class="img-card-01" src="img/img_avatar.png" alt="Avatar" style="width:250px;height:250px;">
               </div>
               <div class="flip-card-back">
-                <img class="img-card-01" src="img/img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
+                <img class="img-card-01" src="img/img_avatar.png" alt="Avatar" style="width:250px;height:250px;">
               </div>
             </div>
         </div>
@@ -242,10 +283,10 @@ body {
         <div class="flip-card flip-card-dynamic">
             <div class="flip-card-inner">
               <div class="flip-card-front">
-                <img class="img-card-02" src="img/img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
+                <img class="img-card-02" src="img/img_avatar.png" alt="Avatar" style="width:250px;height:250px;">
               </div>
               <div class="flip-card-back">
-                <img class="img-card-02" src="img/img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
+                <img class="img-card-02" src="img/img_avatar.png" alt="Avatar" style="width:250px;height:250px;">
               </div>
             </div>
         </div>
@@ -266,10 +307,30 @@ body {
         </div>
       </div> -->
 </div>
-    <div class="card-container row">
+    <div class="actions">
+      <br/>
+      <br/>
+      <br/>
         <button type="button" id="btn-reset">Cambiar cartas</button> 
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal" id="modal-one" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h2>Modal in CSS?</h2>
+      <a href="#" class="btn-close" aria-hidden="true">×</a>
+    </div>
+    <div class="modal-body">
+      <p>One modal example here! :D</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn">Nice!</a>
+    </div>
+  </div>
+</div>
+<!-- /Modal -->
 
 </body>
 </html>
